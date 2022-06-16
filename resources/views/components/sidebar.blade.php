@@ -30,7 +30,7 @@
                         </a>
                     </li>
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="file-manager.html">
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('kalender_penugasan.index') }}">
                             <i data-feather="calendar"></i>
                             <span>Kalender Penugasan</span>
                         </a>
@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="file-manager.html">
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('riwayat_penugasan.index') }}">
                             <i data-feather="file-text"></i>
                             <span>Riwayat Penugasan</span>
                         </a>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KalenderPenugasanController;
 use App\Http\Controllers\KontakPegawaiController;
 use App\Http\Controllers\Master\BidangController;
 use App\Http\Controllers\Master\JabatanTimController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Master\KategoriPenugasanController;
 use App\Http\Controllers\Master\PangkatController;
 use App\Http\Controllers\Master\SkpdController;
 use App\Http\Controllers\Master\TanggalLiburController;
+use App\Http\Controllers\RiwayatPenugasanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +52,10 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/kontak_pegawai', [KontakPegawaiController::class, 'index'])->name('kontak_pegawai.index');
+
+    Route::get('/kalender_penugasan', [KalenderPenugasanController::class, 'index'])->name('kalender_penugasan.index');
+
+    Route::get('/riwayat_penugasan', [RiwayatPenugasanController::class, 'index'])->name('riwayat_penugasan.index');
 
     Route::resource('/user', UserController::class)->middleware('role:admin')->except('show');
     Route::prefix('/master')->middleware('role:admin')->group(function () {
