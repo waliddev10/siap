@@ -67,7 +67,7 @@
 
     <div class="mt-5 text-right">
         <div class="col-12">
-            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Ubah Data</button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Ubah Data</button>
         </div>
     </div>
 

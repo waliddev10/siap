@@ -104,6 +104,7 @@
     <script src="{{ asset('assets/js/typeahead-search/handlebars.js') }}"></script>
     <script src="{{ asset('assets/js/typeahead-search/typeahead-custom.js') }}"></script>
     <!-- Plugins JS Ends-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Theme js-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/theme-customizer/customizer.js') }}"></script> --}}

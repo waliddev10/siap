@@ -65,7 +65,7 @@
                             <span>Data Master</span>
                         </a>
                         <ul class="sidebar-submenu">
-                            <li><a href="{{ route('dashboard') }}">Daftar Bidang</a></li>
+                            <li><a href="{{ route('bidang.index') }}">Daftar Bidang</a></li>
                             <li><a href="{{ route('dashboard') }}">Daftar SKPD</a></li>
                             <li><a href="{{ route('dashboard') }}">Daftar Tanggal Libur</a></li>
                             <li><a href="{{ route('dashboard') }}">Jabatan Pegawai</a></li>

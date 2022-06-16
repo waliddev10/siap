@@ -6,6 +6,7 @@ use App\Http\Controllers\LaporanBulananSkpdBatalController;
 use App\Http\Controllers\LaporanBulananSkpdController;
 use App\Http\Controllers\LaporanHarianController;
 use App\Http\Controllers\LaporanHarianSkpdBatalController;
+use App\Http\Controllers\Master\BidangController;
 use App\Http\Controllers\Pengaturan\JenisPkbController;
 use App\Http\Controllers\Pengaturan\KasirController;
 use App\Http\Controllers\Pengaturan\KasirPembayaranController;
@@ -58,7 +59,10 @@ Route::middleware(['auth'])->group(function () {
         return view('pages.dashboard');
     })->name('dashboard');
 
-    Route::resource('/user', UserController::class)->except('show');
+    Route::resource('/user', UserController::class)->middleware('role:admin')->except('show');
+    Route::prefix('/master')->middleware('role:admin')->group(function () {
+        Route::resource('/bidang', BidangController::class)->except('show');
+    });
 
     // Route::prefix('/laporan_harian')->group(function () {
     //     Route::get('/', [LaporanHarianController::class, 'index'])
