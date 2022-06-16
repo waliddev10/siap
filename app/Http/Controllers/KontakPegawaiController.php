@@ -25,9 +25,14 @@ class KontakPegawaiController extends Controller
             'pages.kontak_pegawai',
             [
                 'user' => ($request->has('bidang_id') ?
-                    User::with(['pangkat', 'bidang'])->where('bidang_id', $request->bidang_id)->get()
+                    User::with(['pangkat', 'bidang'])
+                    ->where('bidang_id', $request->bidang_id)
+                    ->orderBy('nama', 'asc')
+                    ->get()
                     :
-                    User::with(['pangkat', 'bidang'])->get()),
+                    User::with(['pangkat', 'bidang'])
+                    ->orderBy('nama', 'asc')
+                    ->get()),
                 'bidang' => Bidang::all()
             ]
         );

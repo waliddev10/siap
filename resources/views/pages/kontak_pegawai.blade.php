@@ -41,22 +41,22 @@
                         <tbody>
                             @forelse ($user as $u)
                             <tr>
-                                <td>
+                                <td class="py-2">
                                     <img class="img-fluid img-40 rounded-circle mb-3"
                                         src="{{ asset('assets/images/appointment/app-ent.jpg') }}"
                                         alt="Image description">
                                 </td>
-                                <td class="img-content-box">
+                                <td class="img-content-box py-2">
                                     <span class="d-block">{{ $u->nama }}</span>
                                     <span class="font-roboto d-block">{{ $u->nip }}</span>
                                     <span class="font-roboto">{{ $u->pangkat->nama }} {{
                                         $u->pangkat->golongan }}</span>
                                 </td>
-                                <td>
+                                <td class="py-2">
                                     <p class="m-0 font-primary">{{ $u->bidang->nama }}</p>
                                     <span class="text-secondary">{{ $u->jabatan }}</span>
                                 </td>
-                                <td class="text-end">
+                                <td class="text-end py-2">
                                     <a href="https://wa.me/{{ $u->no_hp }}" class="button btn btn-primary"><i
                                             class="fa fa-whatsapp"></i> Chat</a>
                                 </td>
