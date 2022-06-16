@@ -48,7 +48,7 @@
                         </a>
                     </li>
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="file-manager.html">
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('kontak_pegawai.index') }}">
                             <i data-feather="phone"></i>
                             <span>Kontak Pegawai</span>
                         </a>

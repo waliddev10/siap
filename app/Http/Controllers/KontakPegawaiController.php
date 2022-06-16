@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Pengaturan;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bidang;
+use App\Models\Pangkat;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -10,7 +12,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\DataTables;
 
-class UserController extends Controller
+class KontakPegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,20 +21,16 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            return DataTables::of(User::all())
-                ->addColumn('action', function ($item) {
-                    return '<div class="btn-group">
-                    <button class="btn btn-xs btn-info" title="Ubah" data-toggle="modal" data-target="#modalContainer" data-title="Ubah" href="' . route('user.edit', $item->id) . '"><i class="fas fa-edit fa-fw"></i></button>
-                    <button href="' . route('user.destroy', $item->id) . '" class="btn btn-xs btn-danger delete" data-target-table="tableDokumen"><i class="fa fa-trash"></i></button>
-                    </div>';
-                })
-                ->rawColumns(['action'])
-                ->addIndexColumn()
-                ->make(true);
-        }
-
-        return view('pages.pengaturan.user.index');
+        return view(
+            'pages.kontak_pegawai',
+            [
+                'user' => ($request->has('bidang_id') ?
+                    User::with(['pangkat', 'bidang'])->where('bidang_id', $request->bidang_id)->get()
+                    :
+                    User::with(['pangkat', 'bidang'])->get()),
+                'bidang' => Bidang::all()
+            ]
+        );
     }
 
     /**
@@ -42,7 +40,13 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.pengaturan.user.create');
+        return view(
+            'pages.data_master.user.create',
+            [
+                'bidang' => Bidang::all(),
+                'pangkat' => Pangkat::all(),
+            ]
+        );
     }
 
     /**
@@ -58,7 +62,10 @@ class UserController extends Controller
             'email' => 'required|email',
             'nip' => 'required|string',
             'jabatan' => 'required|string',
-            'password' => 'required|string|confirmed',
+            'pangkat_id' => 'required',
+            'bidang_id' => 'required',
+            'no_hp' => 'required',
+            'password' => 'required|string',
             'role' => 'required|in:admin,user',
         ]);
 
@@ -67,6 +74,9 @@ class UserController extends Controller
             'email' => $request->email,
             'nip' => $request->nip,
             'jabatan' => $request->jabatan,
+            'pangkat_id' => $request->pangkat_id,
+            'bidang_id' => $request->bidang_id,
+            'no_hp' => $request->no_hp,
             'email_verified_at' => Carbon::now()->format('Y-m-d'),
             'password' => Hash::make($request->password),
             'role' => $request->role,
@@ -79,17 +89,6 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        // return view('pages.pengaturan.user.show', ['item' => $user]);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -97,7 +96,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('pages.pengaturan.user.edit', ['item' => $user]);
+        return view('pages.data_master.user.edit', [
+            'item' => $user,
+            'bidang' => Bidang::all(),
+            'pangkat' => Pangkat::all(),
+        ]);
     }
 
     /**
@@ -114,6 +117,10 @@ class UserController extends Controller
             'email' => 'required|email',
             'nip' => 'required|string',
             'jabatan' => 'required|string',
+            'pangkat_id' => 'required',
+            'bidang_id' => 'required',
+            'no_hp' => 'required',
+            'password' => 'nullable',
             'role' => 'required|in:admin,user',
         ]);
 
@@ -122,7 +129,13 @@ class UserController extends Controller
         $data->email = $request->email;
         $data->nip = $request->nip;
         $data->jabatan = $request->jabatan;
+        $data->pangkat_id = $request->pangkat_id;
+        $data->bidang_id = $request->bidang_id;
+        $data->no_hp = $request->no_hp;
         $data->role = $request->role;
+        if ($request->password) {
+            $data->password = Hash::make($request->password);
+        }
         $data->update();
 
         return response()->json([

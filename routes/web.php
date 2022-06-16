@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KontakPegawaiController;
 use App\Http\Controllers\Master\BidangController;
 use App\Http\Controllers\Master\JabatanTimController;
 use App\Http\Controllers\Master\JenisPenugasanController;
@@ -7,13 +9,6 @@ use App\Http\Controllers\Master\KategoriPenugasanController;
 use App\Http\Controllers\Master\PangkatController;
 use App\Http\Controllers\Master\SkpdController;
 use App\Http\Controllers\Master\TanggalLiburController;
-use App\Http\Controllers\Pengaturan\JenisPkbController;
-use App\Http\Controllers\Pengaturan\KasirController;
-use App\Http\Controllers\Pengaturan\KasirPembayaranController;
-use App\Http\Controllers\Pengaturan\KotaPenandatanganController;
-use App\Http\Controllers\Pengaturan\PaymentPointController;
-use App\Http\Controllers\Pengaturan\PenandatanganController;
-use App\Http\Controllers\Pengaturan\WilayahController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -53,9 +48,8 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('pages.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/kontak_pegawai', [KontakPegawaiController::class, 'index'])->name('kontak_pegawai.index');
 
     Route::resource('/user', UserController::class)->middleware('role:admin')->except('show');
     Route::prefix('/master')->middleware('role:admin')->group(function () {
@@ -124,17 +118,6 @@ Route::middleware(['auth'])->group(function () {
     //     Route::post('/print', [LaporanBulananSkpdBatalController::class, 'print'])
     //         ->name('laporan_bulanan_skpd_batal.print');
     // });
-
-    Route::prefix('/pengaturan')->middleware('role:admin')->group(function () {
-        Route::resource('/jenis_pkb', JenisPkbController::class)->except('show');
-        Route::resource('/wilayah', WilayahController::class)->except('show');
-        Route::resource('/kasir', KasirController::class)->except('show');
-        Route::resource('/kasir_pembayaran', KasirPembayaranController::class)->except('show');
-        Route::resource('/payment_point', PaymentPointController::class)->except('show');
-        Route::resource('/penandatangan', PenandatanganController::class)->except('show');
-        Route::resource('/kota_penandatangan', KotaPenandatanganController::class)->except('show');
-        // Route::resource('/user', UserController::class)->except('show');
-    });
 });
 
 require __DIR__ . '/auth.php';
