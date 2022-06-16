@@ -49,8 +49,8 @@
                                 <td class="img-content-box py-2">
                                     <span class="d-block">{{ $u->nama }}</span>
                                     <span class="font-roboto d-block">{{ $u->nip }}</span>
-                                    <span class="font-roboto">{{ $u->pangkat->nama }} {{
-                                        $u->pangkat->golongan }}</span>
+                                    <p class="m-0 font-primary">{{ $u->pangkat->nama }} {{
+                                        $u->pangkat->golongan }}</p>
                                 </td>
                                 <td class="py-2">
                                     <p class="m-0 font-primary">{{ $u->bidang->nama }}</p>
