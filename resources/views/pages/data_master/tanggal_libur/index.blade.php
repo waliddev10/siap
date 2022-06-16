@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Master Data Bidang')
+@section('title', 'Master Data Tanggal Libur')
 @section('title.category', 'Master')
 
 @push('styles')
@@ -17,14 +17,14 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h5>Master Data Bidang</h5>
+                <h5>Master Data Tanggal Libur</h5>
             </div>
             <div class="card-body">
-                <a class="btn btn-primary btn-sm" title="Tambah Bidang" data-bs-toggle="modal"
-                    data-bs-target="#modalContainer" data-title="Tambah Bidang" href="{{ route('bidang.create') }}"><i
-                        class="fa fa-plus fa-fw"></i>
+                <a class="btn btn-primary btn-sm" title="Tambah Tanggal Libur" data-bs-toggle="modal"
+                    data-bs-target="#modalContainer" data-title="Tambah Tanggal Libur"
+                    href="{{ route('tanggal_libur.create') }}"><i class="fa fa-plus fa-fw"></i>
                     Tambah
-                    Bidang</a>
+                    Tanggal Libur</a>
                 <div class="table-responsive">
                     <table id="tableDokumen" class="display">
                         <thead>
@@ -32,6 +32,7 @@
                                 <th></th>
                                 <th>No.</th>
                                 <th>Nama</th>
+                                <th>Tanggal</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -64,7 +65,7 @@
         processing: true,
         serverSide: true,
         ajax: {
-            url: '{{ route('bidang.index') }}',
+            url: '{{ route('tanggal_libur.index') }}',
             // data: function (d) {
             //     d.bulan = $('select[name=bulan]').val();
             //     d.tahun = $('select[name=tahun]').val();
@@ -74,6 +75,7 @@
             { data: 'action', name: 'action', className: 'text-nowrap text-center', width: '1%', orderable: false, searchable: false },
             { data: 'DT_RowIndex', name: 'DT_RowIndex', className: 'text-center', width: '1%' , searchable: false, orderable: false},
             { data: 'nama', name: 'nama' },
+            { data: 'tgl', name: 'tgl' },
         ],
     });
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Master Data Bidang')
+@section('title', 'Master Data Jabatan Tim')
 @section('title.category', 'Master')
 
 @push('styles')
@@ -17,14 +17,14 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h5>Master Data Bidang</h5>
+                <h5>Master Data Jabatan Tim</h5>
             </div>
             <div class="card-body">
-                <a class="btn btn-primary btn-sm" title="Tambah Bidang" data-bs-toggle="modal"
-                    data-bs-target="#modalContainer" data-title="Tambah Bidang" href="{{ route('bidang.create') }}"><i
-                        class="fa fa-plus fa-fw"></i>
+                <a class="btn btn-primary btn-sm" title="Tambah Jabatan Tim" data-bs-toggle="modal"
+                    data-bs-target="#modalContainer" data-title="Tambah Jabatan Tim"
+                    href="{{ route('jabatan_tim.create') }}"><i class="fa fa-plus fa-fw"></i>
                     Tambah
-                    Bidang</a>
+                    Jabatan Tim</a>
                 <div class="table-responsive">
                     <table id="tableDokumen" class="display">
                         <thead>
@@ -64,7 +64,7 @@
         processing: true,
         serverSide: true,
         ajax: {
-            url: '{{ route('bidang.index') }}',
+            url: '{{ route('jabatan_tim.index') }}',
             // data: function (d) {
             //     d.bulan = $('select[name=bulan]').val();
             //     d.tahun = $('select[name=tahun]').val();

@@ -1,22 +1,20 @@
 <?php
 
-use App\Http\Controllers\LaporanBulananEsamsatController;
-use App\Http\Controllers\LaporanBulananPenerimaanController;
-use App\Http\Controllers\LaporanBulananSkpdBatalController;
-use App\Http\Controllers\LaporanBulananSkpdController;
-use App\Http\Controllers\LaporanHarianController;
-use App\Http\Controllers\LaporanHarianSkpdBatalController;
 use App\Http\Controllers\Master\BidangController;
+use App\Http\Controllers\Master\JabatanTimController;
+use App\Http\Controllers\Master\JenisPenugasanController;
+use App\Http\Controllers\Master\KategoriPenugasanController;
+use App\Http\Controllers\Master\PangkatController;
+use App\Http\Controllers\Master\SkpdController;
+use App\Http\Controllers\Master\TanggalLiburController;
 use App\Http\Controllers\Pengaturan\JenisPkbController;
 use App\Http\Controllers\Pengaturan\KasirController;
 use App\Http\Controllers\Pengaturan\KasirPembayaranController;
 use App\Http\Controllers\Pengaturan\KotaPenandatanganController;
 use App\Http\Controllers\Pengaturan\PaymentPointController;
 use App\Http\Controllers\Pengaturan\PenandatanganController;
-// use App\Http\Controllers\Pengaturan\UserController;
 use App\Http\Controllers\Pengaturan\WilayahController;
 use App\Http\Controllers\UserController;
-use App\Models\PaymentPoint;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -62,6 +60,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/user', UserController::class)->middleware('role:admin')->except('show');
     Route::prefix('/master')->middleware('role:admin')->group(function () {
         Route::resource('/bidang', BidangController::class)->except('show');
+        Route::resource('/skpd', SkpdController::class)->except('show');
+        Route::resource('/tanggal_libur', TanggalLiburController::class)->except('show');
+        Route::resource('/pangkat', PangkatController::class)->except('show');
+        Route::resource('/jenis_penugasan', JenisPenugasanController::class)->except('show');
+        Route::resource('/kategori_penugasan', KategoriPenugasanController::class)->except('show');
+        Route::resource('/jabatan_tim', JabatanTimController::class)->except('show');
     });
 
     // Route::prefix('/laporan_harian')->group(function () {

@@ -66,13 +66,12 @@
                         </a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('bidang.index') }}">Daftar Bidang</a></li>
-                            <li><a href="{{ route('dashboard') }}">Daftar SKPD</a></li>
-                            <li><a href="{{ route('dashboard') }}">Daftar Tanggal Libur</a></li>
-                            <li><a href="{{ route('dashboard') }}">Jabatan Pegawai</a></li>
-                            <li><a href="{{ route('dashboard') }}">Pangkat Pegawai</a></li>
-                            <li><a href="{{ route('dashboard') }}">Jenis Penugasan</a></li>
-                            <li><a href="{{ route('dashboard') }}">Kategori Penugasan</a></li>
-                            <li><a href="{{ route('dashboard') }}">Jabatan dalam Tim</a></li>
+                            <li><a href="{{ route('skpd.index') }}">Daftar SKPD</a></li>
+                            <li><a href="{{ route('tanggal_libur.index') }}">Daftar Tanggal Libur</a></li>
+                            <li><a href="{{ route('pangkat.index') }}">Pangkat Pegawai</a></li>
+                            <li><a href="{{ route('jenis_penugasan.index') }}">Jenis Penugasan</a></li>
+                            <li><a href="{{ route('kategori_penugasan.index') }}">Kategori Penugasan</a></li>
+                            <li><a href="{{ route('jabatan_tim.index') }}">Jabatan dalam Tim</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-list">
