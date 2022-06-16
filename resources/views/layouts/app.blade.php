@@ -251,6 +251,7 @@
             event.preventDefault();
             var href = $(this).attr("href");
             var dataTargetTable = $(this).data('target-table');
+            var dataTargetTableChild = $(this).data('target-table-child');
 
             Swal.fire({
                 title: 'Anda yakin akan menghapus data ini?',
@@ -270,6 +271,9 @@
                                 // $("#modalContainer").modal('hide');
                                 showAlert(response.message, 'success');
                                 window[dataTargetTable].ajax.reload(null, false);
+                                if(dataTargetTableChild) {
+                                    window[dataTargetTableChild].ajax.reload(null, false);
+                                }
                             }else{
                                 showAlert(response.message, response.status);
                             }

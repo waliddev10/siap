@@ -60,6 +60,12 @@
                         </div>
                     </li>
                     <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('penugasan.index') }}">
+                            <i data-feather="airplay"></i>
+                            <span>Administrasi Tugas</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title" href="javascript:void(0)">
                             <i data-feather="database"></i>
                             <span>Data Master</span>

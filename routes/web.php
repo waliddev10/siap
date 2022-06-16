@@ -10,8 +10,10 @@ use App\Http\Controllers\Master\KategoriPenugasanController;
 use App\Http\Controllers\Master\PangkatController;
 use App\Http\Controllers\Master\SkpdController;
 use App\Http\Controllers\Master\TanggalLiburController;
+use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\RiwayatPenugasanController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserPenugasanController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +60,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/riwayat_penugasan', [RiwayatPenugasanController::class, 'index'])->name('riwayat_penugasan.index');
 
     Route::resource('/user', UserController::class)->middleware('role:admin')->except('show');
+
+    Route::resource('/penugasan', PenugasanController::class)->middleware('role:admin');
+    Route::resource('/user_penugasan', UserPenugasanController::class)->middleware('role:admin')->except(['index', 'show', 'create', 'edit']);
+
     Route::prefix('/master')->middleware('role:admin')->group(function () {
         Route::resource('/bidang', BidangController::class)->except('show');
         Route::resource('/skpd', SkpdController::class)->except('show');

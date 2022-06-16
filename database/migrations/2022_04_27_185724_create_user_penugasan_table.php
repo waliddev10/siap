@@ -15,9 +15,9 @@ class CreateUserPenugasanTable extends Migration
     {
         Schema::create('user_penugasan', function (Blueprint $table) {
             $table->id();
-            $table->string('penugasan_id', 36);
-            $table->string('jabatan_tim_id', 36);
-            $table->string('user_id', 36);
+            $table->bigInteger('penugasan_id')->unsigned();
+            $table->bigInteger('jabatan_tim_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
         });
     }

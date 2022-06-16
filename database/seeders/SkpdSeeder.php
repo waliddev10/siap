@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Bidang;
+use App\Models\Skpd;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 
@@ -15,7 +15,7 @@ class SkpdSeeder extends Seeder
      */
     public function run()
     {
-        return Bidang::insert([
+        return Skpd::insert([
             [
                 'nama' => 'Dinas Lingkungan Hidup',
                 'created_at' => Carbon::now(),

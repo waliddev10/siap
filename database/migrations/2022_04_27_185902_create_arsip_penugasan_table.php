@@ -17,7 +17,7 @@ class CreateArsipPenugasanTable extends Migration
             $table->id();
             $table->string('nama', 64);
             $table->string('keterangan', 128);
-            $table->string('penugasan_id', 36);
+            $table->bigInteger('penugasan_id')->unsigned();
             $table->string('file');
             $table->timestamps();
         });

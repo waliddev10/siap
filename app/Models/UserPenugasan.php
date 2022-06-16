@@ -11,6 +11,17 @@ class UserPenugasan extends Model
 
     protected $fillable = [
         'penugasan_id',
-        'user_id'
+        'user_id',
+        'jabatan_tim_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function jabatan_tim()
+    {
+        return $this->belongsTo(JabatanTim::class);
+    }
 }

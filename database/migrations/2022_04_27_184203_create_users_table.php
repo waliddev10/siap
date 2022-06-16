@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('nip', 18)->unique();
             $table->string('jabatan', 64);
-            $table->string('pangkat_id', 36);
-            $table->string('bidang_id', 36);
+            $table->bigInteger('pangkat_id')->unsigned();
+            $table->bigInteger('bidang_id')->unsigned();
             $table->string('no_hp', 19);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
