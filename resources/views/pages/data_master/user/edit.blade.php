@@ -17,12 +17,16 @@
                 <input type="number" name="nip" class="form-control input-air-primary" value="{{ $item->nip }}" />
             </div>
             <div class=" mt-2">
-                <label class="form-label">Password</label>
-                <input type="text" name="password" class="form-control input-air-primary" />
-            </div>
-            <div class=" mt-2">
                 <label class="form-label">No. Handphone</label>
                 <input type="number" name="no_hp" class="form-control input-air-primary" value="{{ $item->no_hp }}" />
+            </div>
+            <div class=" mt-2">
+                <label class="form-label">Password</label>
+                <div class="alert alert-warning" role="alert">
+                    Silakan isi password jika ingin merubah password lama, dan kosongi jika tidak ingin merubah
+                    password.
+                </div>
+                <input type="text" name="password" class="form-control input-air-primary" />
             </div>
         </div>
         <div class="col">
@@ -63,7 +67,7 @@
 
     <div class="mt-5 text-right">
         <div class="col-12">
-            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
+            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Ubah Data</button>
         </div>
     </div>
 
