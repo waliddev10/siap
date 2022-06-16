@@ -49,8 +49,7 @@
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                 this.closest('form').submit();">
                                     <i data-feather="log-in"></i>
-                                    <span>Log
-                                        in</span>
+                                    <span>Logout</span>
                                 </a>
                             </form>
                         </li>
