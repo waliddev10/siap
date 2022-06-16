@@ -53,13 +53,14 @@
                             <span>Kontak Pegawai</span>
                         </a>
                     </li>
+                    @if(Auth::user()->role == 'admin')
                     <li class="sidebar-main-title">
                         <div>
                             <h6>Admin</h6>
                         </div>
                     </li>
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title" href="#">
+                        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
                             <i data-feather="database"></i>
                             <span>Data Master</span>
                         </a>
@@ -86,6 +87,7 @@
                             <span>Info Aplikasi</span>
                         </a>
                     </li>
+                    @endif
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
