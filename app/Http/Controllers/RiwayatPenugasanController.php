@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Bidang;
 use App\Models\Pangkat;
 use App\Models\User;
+use App\Models\UserPenugasan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Yajra\DataTables\DataTables;
 
 class RiwayatPenugasanController extends Controller
 {
@@ -22,7 +23,12 @@ class RiwayatPenugasanController extends Controller
     public function index(Request $request)
     {
         return view(
-            'pages.riwayat_penugasan.index'
+            'pages.riwayat_penugasan.index',
+            [
+                'items' => UserPenugasan::with(['penugasan', 'penugasan.skpd', 'jabatan_tim'])
+                    ->where('user_id', Auth::user()->id)
+                    ->get()
+            ]
         );
     }
 

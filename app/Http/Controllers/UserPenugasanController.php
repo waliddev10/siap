@@ -57,10 +57,10 @@ class UserPenugasanController extends Controller
         }
 
         // cek apakah bentrok dengan penugasan lainnya
-        $penugasan_terakhir = UserPenugasan::with(['penugasan'])
+        $data_penugasan = UserPenugasan::with(['penugasan'])
             ->where('user_id', $request->user_id)
             ->get();
-        $cek = $penugasan_terakhir->filter(function ($item) use ($penugasan) {
+        $cek = $data_penugasan->filter(function ($item) use ($penugasan) {
             $mulai_input = Carbon::parse($penugasan->tgl_mulai);
             $selesai_input = Carbon::parse($penugasan->tgl_selesai);
             $mulai_existing = Carbon::parse($item->penugasan->tgl_mulai);
