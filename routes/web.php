@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KalenderPenugasanController;
 use App\Http\Controllers\KontakPegawaiController;
@@ -56,6 +57,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/kontak_pegawai', [KontakPegawaiController::class, 'index'])->name('kontak_pegawai.index');
 
     Route::get('/kalender_penugasan', [KalenderPenugasanController::class, 'index'])->name('kalender_penugasan.index');
+
+    Route::get('/arsip', [ArsipController::class, 'index'])->name('arsip.index');
 
     Route::get('/riwayat_penugasan', [RiwayatPenugasanController::class, 'index'])->name('riwayat_penugasan.index');
 

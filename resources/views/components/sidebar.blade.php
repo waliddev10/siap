@@ -35,12 +35,12 @@
                             <span>Kalender Penugasan</span>
                         </a>
                     </li>
-                    {{-- <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="file-manager.html">
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('arsip.index') }}">
                             <i data-feather="folder"></i>
                             <span>Arsip Penugasan</span>
                         </a>
-                    </li> --}}
+                    </li>
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="{{ route('riwayat_penugasan.index') }}">
                             <i data-feather="file-text"></i>
