@@ -16,7 +16,7 @@
             <div class="job-search">
                 <div class="card-body">
                     <div class="media">
-                        <img class="img-40 img-fluid m-r-20" src="{{ asset('assets/images/job-search/1.jpg') }}" alt="">
+                        <img class="img-60 img-fluid m-r-20" src="{{ asset('assets/images/job-search/1.jpg') }}" alt="">
                         <div class="media-body">
                             <h6 class="f-w-600">
                                 <a href="javascript:void(0)">{{ $item->penugasan->nama }}</a>
@@ -33,14 +33,15 @@
                                 <i><strong>s.d.</strong></i> {{ \Carbon\Carbon::parse($item->penugasan->tgl_selesai)
                                 ->isoFormat('dddd, D MMMM YYYY') }}
                             </p>
-                            <p>
-                                <strong>SKPD:</strong> {{ $item->penugasan->skpd->nama }}.
-                                <strong>Peran:</strong> {{
-                                $item->jabatan_tim->nama }}
+                            <p class="mb-0">
+                                <strong>SKPD:</strong> {{ $item->penugasan->skpd->nama }}
+                            </p>
+                            <p class="mb-0">
+                                <strong>Peran:</strong> {{ $item->jabatan_tim->nama }}
                             </p>
                         </div>
                     </div>
-                    <p>
+                    <p class="mt-3">
                         {{ $item->penugasan->keterangan }}
                     </p>
                 </div>
