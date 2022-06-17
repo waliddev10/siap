@@ -34,9 +34,9 @@ class PenugasanController extends Controller
 
             return DataTables::of($data)
                 ->addColumn('action', function ($item) {
-                    return '<button class="btn btn-xs btn-primary" title="Lihat Komponen Tim" data-bs-toggle="modal" data-bs-target="#modalContainer" data-title="Lihat Komponen Tim" href="' . route('penugasan.show', $item->id) . '"><i class="fa fa-eye fa-fw"></i></button>
-                    <button class="btn btn-xs btn-warning" title="Ubah" data-bs-toggle="modal" data-bs-target="#modalContainer" data-title="Ubah" href="' . route('penugasan.edit', $item->id) . '"><i class="fa fa-edit fa-fw"></i></button>
-                    <button href="' . route('penugasan.destroy', $item->id) . '" class="btn btn-xs btn-danger delete" data-target-table="tableDokumen"><i class="fa fa-trash"></i></button>';
+                    return '<button type="button" class="btn btn-xs btn-primary" title="Lihat Komponen Tim" data-bs-toggle="modal" data-bs-target="#modalContainer" data-title="Lihat Komponen Tim" href="' . route('penugasan.show', $item->id) . '"><i class="fa fa-users"></i></button>
+                    <button type="button" class="btn btn-xs btn-warning" title="Ubah" data-bs-toggle="modal" data-bs-target="#modalContainer" data-title="Ubah" href="' . route('penugasan.edit', $item->id) . '"><i class="fa fa-edit"></i></button>
+                    <button type="button" href="' . route('penugasan.destroy', $item->id) . '" class="btn btn-xs btn-danger delete" data-target-table="tableDokumen"><i class="fa fa-trash"></i></button>';
                 })
                 ->rawColumns(['action'])
                 ->addIndexColumn()
