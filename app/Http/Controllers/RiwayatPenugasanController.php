@@ -25,17 +25,42 @@ class RiwayatPenugasanController extends Controller
         if ($request->wantsJson() || $request->ajax()) {
             $data = UserPenugasan::with(['penugasan', 'penugasan.skpd', 'jabatan_tim'])
                 ->where('user_id', Auth::user()->id)
-                ->whereHas('penugasan', function ($q) use ($request) {
-                    $q->when($request->has('order_by') && $request->has('sort'), function ($query) use ($request) {
-                        if ($request->order_by == 'tgl_mulai')
-                            return $query->orderBy('penugasan.tgl_mulai', $request->sort);
-                        if ($request->order_by == 'tgl_selesai')
-                            return $query->orderBy('penugasan.tgl_selesai', $request->sort);
-                        if ($request->order_by == 'nama')
-                            return $query->orderBy('penugasan.nama', $request->sort);
-                    });
-                })
-                ->get();
+                ->get()
+                ->when($request->has('order_by'), function ($collection) use ($request) {
+                    if ($request->order_by == 'tgl_mulai') {
+                        if ($request->sort == 'asc') {
+                            return $collection->sortBy(function ($col, $key) {
+                                return $col->penugasan->tgl_mulai;
+                            });
+                        } else {
+                            return $collection->sortByDesc(function ($col, $key) {
+                                return $col->penugasan->tgl_mulai;
+                            });
+                        }
+                    }
+                    if ($request->order_by == 'tgl_selesai') {
+                        if ($request->sort == 'asc') {
+                            return $collection->sortBy(function ($col, $key) {
+                                return $col->penugasan->tgl_selesai;
+                            });
+                        } else {
+                            return $collection->sortByDesc(function ($col, $key) {
+                                return $col->penugasan->tgl_selesai;
+                            });
+                        }
+                    }
+                    if ($request->order_by == 'nama') {
+                        if ($request->sort == 'asc') {
+                            return $collection->sortBy(function ($col, $key) {
+                                return $col->penugasan->nama;
+                            });
+                        } else {
+                            return $collection->sortByDesc(function ($col, $key) {
+                                return $col->penugasan->nama;
+                            });
+                        }
+                    }
+                });
 
 
             return view(

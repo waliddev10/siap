@@ -22,8 +22,8 @@
             </div>
             <div class="mr-2">
                 <select name="sort" class="form-control">
-                    <option value="asc" selected>Asc
-                    <option value="desc">Desc
+                    <option value="asc">Asc
+                    <option value="desc" selected>Desc
                     </option>
                 </select>
             </div>
