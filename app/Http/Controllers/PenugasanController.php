@@ -7,15 +7,12 @@ use App\Models\Bidang;
 use App\Models\JabatanTim;
 use App\Models\JenisPenugasan;
 use App\Models\KategoriPenugasan;
-use App\Models\Pangkat;
 use App\Models\Penugasan;
 use App\Models\Skpd;
 use App\Models\User;
 use App\Models\UserPenugasan;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\DataTables;
 
 class PenugasanController extends Controller

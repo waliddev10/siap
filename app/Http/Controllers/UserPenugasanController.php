@@ -56,25 +56,6 @@ class UserPenugasanController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        // cek apakah bentrok dengan penugasan lainnya
-        $data_penugasan = UserPenugasan::with(['penugasan'])
-            ->where('user_id', $request->user_id)
-            ->get();
-        $cek = $data_penugasan->filter(function ($item) use ($penugasan) {
-            $mulai_input = Carbon::parse($penugasan->tgl_mulai);
-            $selesai_input = Carbon::parse($penugasan->tgl_selesai);
-            $mulai_existing = Carbon::parse($item->penugasan->tgl_mulai);
-            $selesai_existing = Carbon::parse($item->penugasan->tgl_selesai);
-        })->count();
-        if ($cek) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'User sudah ada penugasan pada tanggal tersebut.',
-            ], Response::HTTP_BAD_REQUEST);
-        }
-
-
-
         UserPenugasan::create([
             'penugasan_id' => $request->penugasan_id,
             'jabatan_tim_id' => $request->jabatan_tim_id,
