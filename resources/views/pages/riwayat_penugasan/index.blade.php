@@ -40,7 +40,8 @@
                                 ->isoFormat('dddd, D MMMM YYYY') }}
                             </p>
                             <p class="mb-0">
-                                <strong>SKPD:</strong> {{ $item->penugasan->skpd->nama }}
+                                <strong>SKPD:</strong> {{ $item->penugasan->skpd->nama }} ({{ $item->penugasan->lokasi
+                                }})
                             </p>
                             <p class="mb-0">
                                 <strong>Peran:</strong> {{ $item->jabatan_tim->nama }}
