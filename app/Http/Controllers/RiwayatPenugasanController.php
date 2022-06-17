@@ -22,13 +22,32 @@ class RiwayatPenugasanController extends Controller
      */
     public function index(Request $request)
     {
+        if ($request->wantsJson() || $request->ajax()) {
+            $data = UserPenugasan::with(['penugasan', 'penugasan.skpd', 'jabatan_tim'])
+                ->where('user_id', Auth::user()->id)
+                ->whereHas('penugasan', function ($q) use ($request) {
+                    $q->when($request->has('order_by') && $request->has('sort'), function ($query) use ($request) {
+                        if ($request->order_by == 'tgl_mulai')
+                            return $query->orderBy('penugasan.tgl_mulai', $request->sort);
+                        if ($request->order_by == 'tgl_selesai')
+                            return $query->orderBy('penugasan.tgl_selesai', $request->sort);
+                        if ($request->order_by == 'nama')
+                            return $query->orderBy('penugasan.nama', $request->sort);
+                    });
+                })
+                ->get();
+
+
+            return view(
+                'pages.riwayat_penugasan.list',
+                [
+                    'items' => $data
+                ]
+            );;
+        }
+
         return view(
-            'pages.riwayat_penugasan.index',
-            [
-                'items' => UserPenugasan::with(['penugasan', 'penugasan.skpd', 'jabatan_tim'])
-                    ->where('user_id', Auth::user()->id)
-                    ->get()
-            ]
+            'pages.riwayat_penugasan.index'
         );
     }
 
