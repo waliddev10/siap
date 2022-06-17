@@ -34,7 +34,7 @@ class PenugasanController extends Controller
 
             return DataTables::of($data)
                 ->addColumn('action', function ($item) {
-                    return '<button class="btn btn-xs btn-primary" title="Lihat Anggota" data-bs-toggle="modal" data-bs-target="#modalContainer" data-title="Lihat Anggota" href="' . route('penugasan.show', $item->id) . '"><i class="fa fa-eye fa-fw"></i></button>
+                    return '<button class="btn btn-xs btn-primary" title="Lihat Komponen Tim" data-bs-toggle="modal" data-bs-target="#modalContainer" data-title="Lihat Komponen Tim" href="' . route('penugasan.show', $item->id) . '"><i class="fa fa-eye fa-fw"></i></button>
                     <button class="btn btn-xs btn-warning" title="Ubah" data-bs-toggle="modal" data-bs-target="#modalContainer" data-title="Ubah" href="' . route('penugasan.edit', $item->id) . '"><i class="fa fa-edit fa-fw"></i></button>
                     <button href="' . route('penugasan.destroy', $item->id) . '" class="btn btn-xs btn-danger delete" data-target-table="tableDokumen"><i class="fa fa-trash"></i></button>';
                 })
@@ -126,25 +126,6 @@ class PenugasanController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Penugasan berhasil ditambah.',
-        ], Response::HTTP_CREATED);
-    }
-    public function storeUserPenugasan(Request $request)
-    {
-        $this->validate($request, [
-            'penugasan_id' => 'required',
-            'jabatan_tim_id' => 'required',
-            'user_id' => 'required'
-        ]);
-
-        UserPenugasan::create([
-            'penugasan_id' => $request->penugasan_id,
-            'jabatan_tim_id' => $request->jabatan_tim_id,
-            'user_id' => $request->user_id,
-        ]);
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'User Penugasan berhasil ditambah.',
         ], Response::HTTP_CREATED);
     }
 

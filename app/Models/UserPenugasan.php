@@ -24,4 +24,9 @@ class UserPenugasan extends Model
     {
         return $this->belongsTo(JabatanTim::class);
     }
+
+    public function penugasan()
+    {
+        return $this->belongsTo(Penugasan::class);
+    }
 }

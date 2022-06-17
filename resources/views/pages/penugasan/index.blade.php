@@ -37,7 +37,7 @@
                                 <th>Lokasi</th>
                                 <th>Bidang</th>
                                 <th>SKPD</th>
-                                <th>Tim (Orang)</th>
+                                <th>Komponen Tim</th>
                                 <th>Jenis</th>
                             </tr>
                         </thead>

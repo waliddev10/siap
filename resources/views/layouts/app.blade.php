@@ -267,16 +267,15 @@
                         url: href,
                         type: 'DELETE',
                         success: function(response) {
-                            if(response.status == 'success'){
-                                // $("#modalContainer").modal('hide');
-                                showAlert(response.message, 'success');
-                                window[dataTargetTable].ajax.reload(null, false);
-                                if(dataTargetTableChild) {
-                                    window[dataTargetTableChild].ajax.reload(null, false);
-                                }
-                            }else{
-                                showAlert(response.message, response.status);
+                            window[dataTargetTable].ajax.reload(null, false);
+                            if(dataTargetTableChild) {
+                                window[dataTargetTableChild].ajax.reload(null, false);
                             }
+                            showAlert(response.message, response.status || 'success');
+                        },
+                        error: function(xhr) {
+                            var err = eval("(" + xhr.responseText + ")");
+                            showAlert(err.message, err.status || 'error');
                         }
                     });
                 }
@@ -286,19 +285,5 @@
 
     @stack('scripts')
 </body>
-
-{{-- <div id="wrapper">
-    @include('partials.sidebar')
-    <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
-            @include('partials.navbar')
-            <div class="container-fluid p-0">
-                @yield('content')
-            </div>
-        </div>
-        @include('partials.footer')
-    </div>
-</div>
-@include('components.scroll-to-top') --}}
 
 </html>

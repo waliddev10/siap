@@ -77,14 +77,13 @@
             processData: false,
             contentType: false,
             success: function(response) {
-                if(response.status == 'success')
-                {
-                    $("#modalContainer").modal('hide');
-                    tableDokumen.ajax.reload(null, false);
-                    showAlert(response.message, 'success')
-                }else{
-                    showAlert(response.message, 'warning')
-                }
+                $("#modalContainer").modal('hide');
+                tableDokumen.ajax.reload(null, false);
+                showAlert(response.message, response.status || 'success');
+            },
+            error: function(xhr) {
+                var err = eval("(" + xhr.responseText + ")");
+                showAlert(err.message, err.status || 'error');
             }
         });
         return false;

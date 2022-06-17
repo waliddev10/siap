@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Penugasan;
 use App\Models\UserPenugasan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -44,6 +46,34 @@ class UserPenugasanController extends Controller
             'jabatan_tim_id' => 'required',
             'user_id' => 'required'
         ]);
+
+        $penugasan = UserPenugasan::where('penugasan_id', $request->penugasan_id);
+        // cek apakah sudah ditunjuk dalam penugasan tsb?
+        if ($penugasan->where('user_id', $request->user_id)->first()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User sudah ditambahkan dalam penugasan, harap menghapus data existing terlebih dahulu sebelum memasukkan data user baru dalam penugasan ini.',
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        // cek apakah bentrok dengan penugasan lainnya
+        $penugasan_terakhir = UserPenugasan::with(['penugasan'])
+            ->where('user_id', $request->user_id)
+            ->get();
+        $cek = $penugasan_terakhir->filter(function ($item) use ($penugasan) {
+            $mulai_input = Carbon::parse($penugasan->tgl_mulai);
+            $selesai_input = Carbon::parse($penugasan->tgl_selesai);
+            $mulai_existing = Carbon::parse($item->penugasan->tgl_mulai);
+            $selesai_existing = Carbon::parse($item->penugasan->tgl_selesai);
+        })->count();
+        if ($cek) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User sudah ada penugasan pada tanggal tersebut.',
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+
 
         UserPenugasan::create([
             'penugasan_id' => $request->penugasan_id,

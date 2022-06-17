@@ -16,15 +16,15 @@
         </div>
     </div>
     <div class="col-sm-5">
-        <h5>Tambah Anggota</h5>
+        <h5>Tambah Komponen Tim</h5>
         <form action="{{ route('user_penugasan.store') }}" accept-charset="UTF-8" class="form needs-validation"
             id="create" autocomplete="off">
             @csrf
             <input type="hidden" name="penugasan_id" value="{{ $item->id }}" />
             <div class="mt-2">
-                <label class="form-label">Nama Anggota</label>
+                <label class="form-label">Nama Pegawai</label>
                 <select name="user_id" class="form-select input-air-primary">
-                    <option disabled selected>Pilih Nama Anggota</option>
+                    <option disabled selected>Pilih Pegawai</option>
                     @foreach ($user as $user)
                     <option value="{{ $user->id }}">{{ $user->nama }}</option>
                     @endforeach
@@ -85,14 +85,13 @@
             processData: false,
             contentType: false,
             success: function(response) {
-                if(response.status == 'success')
-                {
-                    tableDokumenChild.ajax.reload(null, false);
-                    tableDokumen.ajax.reload(null, false);
-                    showAlert(response.message, 'success')
-                }else{
-                    showAlert(response.message, 'warning')
-                }
+                tableDokumenChild.ajax.reload(null, false);
+                tableDokumen.ajax.reload(null, false);
+                showAlert(response.message, response.status || 'success');
+            },
+            error: function(xhr) {
+                var err = eval("(" + xhr.responseText + ")");
+                showAlert(err.message, err.status || 'error');
             }
         });
         return false;
