@@ -220,8 +220,8 @@
         function showAlert(message, type = 'success', reload = false) {
             if (type == 'success') {
                 Swal.fire({
-                    icon: 'success',
-                    title: message,
+                    title: type.toUpperCase()+'!',
+                    html: message,
                     allowEscapeKey: false,
                     allowOutsideClick: false,
                     allowEnterKey: false
@@ -234,7 +234,10 @@
                 Swal.fire({
                     title: type.toUpperCase()+'!',
                     html: message,
-                    icon: type
+                    icon: type,
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    allowEnterKey: false
                 }).then((result) => {
                     if (result.isConfirmed) {
                         if (reload) {

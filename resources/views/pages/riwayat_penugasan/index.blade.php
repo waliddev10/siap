@@ -19,7 +19,7 @@
                         <img class="img-40 img-fluid m-r-20" src="{{ asset('assets/images/job-search/1.jpg') }}" alt="">
                         <div class="media-body">
                             <h6 class="f-w-600">
-                                <a href="#">{{ $item->penugasan->nama }}</a>
+                                <a href="javascript:void(0)">{{ $item->penugasan->nama }}</a>
                                 @if(\Carbon\Carbon::parse($item->penugasan->tgl_selesai) <= \Carbon\Carbon::now()) <span
                                     class="badge badge-primary pull-right">
                                     Selesai
@@ -27,19 +27,16 @@
                                     @else
                                     @endif
                             </h6>
+                            <p class="mb-0">
+                                <strong>Tanggal:</strong> {{ \Carbon\Carbon::parse($item->penugasan->tgl_mulai)
+                                ->isoFormat('dddd, D MMMM YYYY') }}
+                                <i><strong>s.d.</strong></i> {{ \Carbon\Carbon::parse($item->penugasan->tgl_selesai)
+                                ->isoFormat('dddd, D MMMM YYYY') }}
+                            </p>
                             <p>
                                 <strong>SKPD:</strong> {{ $item->penugasan->skpd->nama }}.
                                 <strong>Peran:</strong> {{
                                 $item->jabatan_tim->nama }}
-                                <span class="d-block">
-                                    @php
-                                    $jumlah_hari =
-                                    \Carbon\Carbon::parse($item->penugasan->tgl_mulai)->diffInDays(\Carbon\Carbon::parse($item->penugasan->tgl_selesai));
-                                    @endphp
-                                    @for($i = 0; $i < $jumlah_hari; $i++) <i class="fa fa-star font-warning">
-                                        </i>
-                                        @endfor
-                                </span>
                             </p>
                         </div>
                     </div>
