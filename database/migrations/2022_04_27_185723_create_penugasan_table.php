@@ -18,7 +18,7 @@ class CreatePenugasanTable extends Migration
             $table->string('nama', 64);
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
-            $table->string('keterangan', 128);
+            $table->text('keterangan');
             $table->string('lokasi', 128);
             $table->bigInteger('jenis_penugasan_id')->unsigned();
             $table->bigInteger('kategori_penugasan_id')->unsigned();

@@ -16,7 +16,7 @@ class CreateArsipPenugasanTable extends Migration
         Schema::create('arsip_penugasan', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 64);
-            $table->string('keterangan', 128);
+            $table->text('keterangan');
             $table->bigInteger('penugasan_id')->unsigned();
             $table->string('file');
             $table->timestamps();

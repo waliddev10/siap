@@ -20,12 +20,18 @@
                         <div class="media-body">
                             <h6 class="f-w-600">
                                 <a href="javascript:void(0)">{{ $item->penugasan->nama }}</a>
-                                @if(\Carbon\Carbon::parse($item->penugasan->tgl_selesai) <= \Carbon\Carbon::now()) <span
-                                    class="badge badge-primary pull-right">
-                                    Selesai
-                                    </span>
-                                    @else
-                                    @endif
+                                @if(\Carbon\Carbon::parse($item->penugasan->tgl_mulai) <= \Carbon\Carbon::now() &&
+                                    \Carbon\Carbon::parse($item->penugasan->tgl_selesai) <= \Carbon\Carbon::now()) <span
+                                        class="badge badge-primary pull-right">
+                                        <i class="fa fa-check-circle"></i> Selesai
+                                        </span>
+                                        @elseif(\Carbon\Carbon::parse($item->penugasan->tgl_mulai) <=
+                                            \Carbon\Carbon::now() && \Carbon\Carbon::parse($item->
+                                            penugasan->tgl_selesai) > \Carbon\Carbon::now()) <span
+                                                class="badge badge-warning pull-right">
+                                                <i class="fa fa-exclamation-circle"></i> Sedang Berlangsung
+                                            </span>
+                                            @endif
                             </h6>
                             <p class="mb-0">
                                 <strong>Tanggal:</strong> {{ \Carbon\Carbon::parse($item->penugasan->tgl_mulai)
