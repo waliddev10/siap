@@ -21,18 +21,24 @@ class KontakPegawaiController extends Controller
      */
     public function index(Request $request)
     {
+        if ($request->wantsJson() || $request->ajax()) {
+            $data = User::with(['pangkat', 'bidang'])
+                ->when($request->has('bidang_id') && !empty($request->bidang_id), function ($query) use ($request) {
+                    return $query->where('bidang_id', $request->bidang_id);
+                })
+                ->get();
+
+            return view(
+                'pages.kontak_pegawai.list',
+                [
+                    'items' => $data
+                ]
+            );
+        }
+
         return view(
-            'pages.kontak_pegawai',
+            'pages.kontak_pegawai.index',
             [
-                'user' => ($request->has('bidang_id') ?
-                    User::with(['pangkat', 'bidang'])
-                    ->where('bidang_id', $request->bidang_id)
-                    ->orderBy('nama', 'asc')
-                    ->get()
-                    :
-                    User::with(['pangkat', 'bidang'])
-                    ->orderBy('nama', 'asc')
-                    ->get()),
                 'bidang' => Bidang::all()
             ]
         );
