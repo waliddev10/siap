@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col mb-3">
         <form id="filter" class="form-inline">
-            <div class="mr-2">
+            <div class="me-2">
                 <select name="order_by" class="form-control">
                     <option selected value="tgl_mulai">Tanggal Mulai</option>
                     <option value="tgl_selesai">Tanggal Selesai
@@ -20,7 +20,7 @@
                     </option>
                 </select>
             </div>
-            <div class="mr-2">
+            <div class="me-2">
                 <select name="sort" class="form-control">
                     <option value="asc">Asc
                     <option value="desc" selected>Desc
