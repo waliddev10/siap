@@ -31,25 +31,25 @@ use Illuminate\Support\Facades\Route;
 
 // setup
 
-Route::get('/migrate', function () {
-    return Artisan::call('migrate');
-});
-Route::get('/migrate/fresh', function () {
-    return Artisan::call('migrate:fresh');
-});
-Route::get('/seed', function () {
-    return Artisan::call('db:seed');
-});
-Route::get('/symlink', function () {
-    $target =  env('SYMLINK_PATH');
-    $shortcut = env('SYMLINK_PATH_TARGET');
-    return symlink($target, $shortcut);
-});
+// Route::get('/migrate', function () {
+//     return Artisan::call('migrate');
+// });
+// Route::get('/migrate/fresh', function () {
+//     return Artisan::call('migrate:fresh');
+// });
+// Route::get('/seed', function () {
+//     return Artisan::call('db:seed');
+// });
+// Route::get('/symlink', function () {
+//     $target =  env('SYMLINK_PATH');
+//     $shortcut = env('SYMLINK_PATH_TARGET');
+//     return symlink($target, $shortcut);
+// });
 
 // router
 
 Route::get('/', function () {
-    return redirect()->route('dashboard');
+    return redirect()->route('dashboard.index');
 });
 
 Route::middleware(['auth'])->group(function () {
