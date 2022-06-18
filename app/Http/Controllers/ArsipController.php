@@ -21,7 +21,7 @@ class ArsipController extends Controller
      */
     public function index(Request $request)
     {
-        return view('pages.arsip');
+        return view('pages.arsip.index');
     }
 
     /**
