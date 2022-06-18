@@ -16,14 +16,16 @@
                                     \Carbon\Carbon::parse($item->
                                     penugasan->tgl_selesai) > \Carbon\Carbon::now()) <span
                                         class="badge badge-warning pull-right">
-                                        <i class="fa fa-exclamation-circle"></i> Sedang Berlangsung
+                                        <i class="fa fa-clock-o"></i> Sedang Berlangsung
                                     </span>
                                     @endif
                     </h6>
                     <p class="mb-0">
-                        <strong>Tanggal:</strong> {{ \Carbon\Carbon::parse($item->penugasan->tgl_mulai)
+                        <strong>Dari:</strong> {{ \Carbon\Carbon::parse($item->penugasan->tgl_mulai)
                         ->isoFormat('dddd, D MMMM YYYY') }}
-                        <i><strong>s.d.</strong></i> {{ \Carbon\Carbon::parse($item->penugasan->tgl_selesai)
+                    </p>
+                    <p class="mb-0">
+                        <strong>Sampai:</strong> {{ \Carbon\Carbon::parse($item->penugasan->tgl_selesai)
                         ->isoFormat('dddd, D MMMM YYYY') }}
                     </p>
                     <p class="mb-0">
