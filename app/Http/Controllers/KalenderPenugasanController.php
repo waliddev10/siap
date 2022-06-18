@@ -31,7 +31,7 @@ class KalenderPenugasanController extends Controller
                 ->when($request->has('tahun') && $request->has('bulan'), function ($collection) use ($request) {
                     return $collection
                         ->filter(function ($item) use ($request) {
-                            return (Carbon::parse($item->penugasan->tgl_mulai)->year == $request->tahun &&  Carbon::parse($item->penugasan->tgl_selesai)->year == $request->tahun) || (Carbon::parse($item->penugasan->tgl_mulai)->month == $request->bulan && Carbon::parse($item->penugasan->tgl_selesai)->year == $request->tahun);
+                            return (Carbon::parse($item->penugasan->tgl_mulai)->year == $request->tahun &&  Carbon::parse($item->penugasan->tgl_mulai)->year == $request->tahun) || (Carbon::parse($item->penugasan->tgl_selesai)->month == $request->bulan && Carbon::parse($item->penugasan->tgl_selesai)->year == $request->tahun);
                         });
                 });
 
