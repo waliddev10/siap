@@ -53,7 +53,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('/dashboard', DashboardController::class);
     Route::get('/kontak_pegawai', [KontakPegawaiController::class, 'index'])->name('kontak_pegawai.index');
 
     Route::get('/kalender_penugasan', [KalenderPenugasanController::class, 'index'])->name('kalender_penugasan.index');

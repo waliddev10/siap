@@ -9,6 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\DataTables;
 
@@ -21,7 +22,7 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        return view('pages.dashboard');
+        return view('pages.dashboard.index');
     }
 
     /**

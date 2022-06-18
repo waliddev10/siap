@@ -7,7 +7,7 @@
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="menu">
                 </i></div>
         </div>
-        <div class="logo-icon-wrapper"><a href="{{ route('dashboard') }}"><img
+        <div class="logo-icon-wrapper"><a href="{{ route('dashboard.index') }}"><img
                     src="{{ asset('assets/images/logo/logo-icon.png') }}" alt="" height="36"></a></div>
         <nav class="sidebar-main">
             <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
@@ -24,7 +24,7 @@
                         </div>
                     </li>
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav active" href="{{ route('dashboard') }}">
+                        <a class="sidebar-link sidebar-title link-nav active" href="{{ route('dashboard.index') }}">
                             <i data-feather="clock"></i>
                             <span>Dashboard</span>
                         </a>

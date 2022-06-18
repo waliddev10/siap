@@ -13,7 +13,7 @@
                         <div class="greeting-user">
                             <h4 class="f-w-600 font-primary">Selamat Pagi</h4>
                             <p>Cek jadwal Anda hari ini.</p>
-                            <div class="whatsnew-btn"><a href="{{ route('penugasan.index') }}"
+                            <div class="whatsnew-btn"><a href="{{ route('kalender_penugasan.index') }}"
                                     class="btn btn-primary">Cek Jadwal</a>
                             </div>
                         </div>

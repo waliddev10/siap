@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Bidang;
 use App\Models\Pangkat;
 use App\Models\User;
+use App\Models\UserPenugasan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\DataTables;
 
@@ -21,6 +23,31 @@ class KalenderPenugasanController extends Controller
      */
     public function index(Request $request)
     {
+
+        if ($request->wantsJson() || $request->ajax()) {
+            $data = UserPenugasan::with(['penugasan', 'penugasan.skpd', 'jabatan_tim'])
+                ->where('user_id', Auth::user()->id)
+                ->get()
+                ->when($request->has('tahun'), function ($collection) use ($request) {
+                    return $collection->filter(function ($item) use ($request) {
+                        return Carbon::parse($item->penugasan->tgl_mulai)->year == $request->tahun;
+                    });
+                })
+                ->when($request->has('bulan'), function ($collection) use ($request) {
+                    return $collection->filter(function ($item) use ($request) {
+                        return Carbon::parse($item->penugasan->tgl_mulai)->month == $request->bulan;
+                    });
+                });
+
+
+            return view(
+                'pages.kalender_penugasan.list',
+                [
+                    'items' => $data
+                ]
+            );
+        }
+
         return view(
             'pages.kalender_penugasan.index'
         );
