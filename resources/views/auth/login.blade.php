@@ -42,32 +42,8 @@
             </div>
         </form>
     </div>
+    <div class="text-center mt-3">
+        <object style="width:150px;" type="image/svg+xml" data="{{ asset('assets/images/digicert.svg') }}"></object>
+    </div>
 </div>
 @endsection
-
-{{-- <div class="col-12">
-    <div class="text-lg text-center mb-3">
-        <img class="mx-auto d-block rotate-n-15" src={{ asset('assets/img/logo.png') }} height="84" />
-    </div>
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-        <div class="form-group">
-            <input autofocus required type="number" name="nip" class="form-control form-control-lg" placeholder="NIP."
-                value="{{ old('nip') }}" />
-            @error('nip')
-            <small class="text-danger">{{ $message }}</small>
-            @enderror
-        </div>
-        <div class="form-group">
-            <input required type="password" name="password" class="form-control form-control-lg"
-                placeholder="Password" />
-            @error('password')
-            <small class="text-danger">{{ $message }}</small>
-            @enderror
-        </div>
-        <input type="hidden" value="true" name="remember" />
-        <button type="submit" class="btn btn-lg btn-primary btn-block">
-            Login
-        </button>
-    </form>
-</div> --}}

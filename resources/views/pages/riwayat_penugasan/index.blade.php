@@ -14,16 +14,16 @@
         <form id="filter" class="form-inline">
             <div class="me-2">
                 <select name="order_by" class="form-select">
-                    <option selected value="tgl_mulai">Tanggal Mulai</option>
-                    <option value="tgl_selesai">Tanggal Selesai
-                    <option value="nama">Nama Penugasan
+                    <option selected value="tgl_mulai">Tanggal mulai</option>
+                    <option value="tgl_selesai">Tanggal selesai
+                    <option value="nama">Nama penugasan
                     </option>
                 </select>
             </div>
             <div class="me-2">
                 <select name="sort" class="form-select">
-                    <option value="asc">Asc
-                    <option value="desc" selected>Desc
+                    <option value="asc">A-Z
+                    <option value="desc" selected>Z-A
                     </option>
                 </select>
             </div>
