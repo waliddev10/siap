@@ -28,15 +28,14 @@ class KalenderPenugasanController extends Controller
             $data = UserPenugasan::with(['penugasan', 'penugasan.skpd', 'jabatan_tim'])
                 ->where('user_id', Auth::user()->id)
                 ->get()
-                ->when($request->has('tahun'), function ($collection) use ($request) {
-                    return $collection->filter(function ($item) use ($request) {
-                        return Carbon::parse($item->penugasan->tgl_mulai)->year == $request->tahun || Carbon::parse($item->penugasan->tgl_selesai)->year == $request->tahun;
-                    });
-                })
-                ->when($request->has('bulan'), function ($collection) use ($request) {
-                    return $collection->filter(function ($item) use ($request) {
-                        return Carbon::parse($item->penugasan->tgl_mulai)->month == $request->bulan || Carbon::parse($item->penugasan->tgl_selesai)->year == $request->tahun;
-                    });
+                ->when($request->has('tahun') && $request->has('bulan'), function ($collection) use ($request) {
+                    return $collection
+                        ->filter(function ($item) use ($request) {
+                            return Carbon::parse($item->penugasan->tgl_mulai)->year == $request->tahun || Carbon::parse($item->penugasan->tgl_selesai)->year == $request->tahun;
+                        })
+                        ->filter(function ($item) use ($request) {
+                            return Carbon::parse($item->penugasan->tgl_mulai)->month == $request->bulan || Carbon::parse($item->penugasan->tgl_selesai)->year == $request->tahun;
+                        });
                 });
 
 
