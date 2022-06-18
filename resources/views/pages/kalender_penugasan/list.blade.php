@@ -5,7 +5,7 @@
             class="ribbon ribbon-bookmark ribbon-vertical-left ribbon-primary"><i class="fa fa-check-circle"></i></div>
 @elseif(\Carbon\Carbon::parse($item->penugasan->tgl_mulai) <= \Carbon\Carbon::now() && \Carbon\Carbon::parse($item->
     penugasan->tgl_selesai) > \Carbon\Carbon::now()) <div
-        class="ribbon ribbon-bookmark ribbon-vertical-left ribbon-warning"><i class="fa fa-exclamation-triangle"></i>
+        class="ribbon ribbon-bookmark ribbon-vertical-left ribbon-warning"><i class="fa fa-clock-o"></i>
     </div>
     @endif
 
